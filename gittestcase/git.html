@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Login Test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Simulated GitHub Login</h1>
+    <form id="githubLoginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter GitHub username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter GitHub password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div id="loginStatus" style="margin-top: 20px;"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#githubLoginForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Get the values
+                var username = $('#username').val();
+                var password = $('#password').val();
+
+                // Simulate login attempt (this won't actually log in)
+                $('#loginStatus').html('Attempting to log in as ' + username + '...');
+
+                // For demonstration, simulate success/failure
+                if (username === "testuser" && password === "testpass") {
+                    $('#loginStatus').html('Login successful!');
+                } else {
+                    $('#loginStatus').html('Login failed: Invalid username or password.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

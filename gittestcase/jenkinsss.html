@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Jenkins Login</h1>
+    <form id="jenkinsLoginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div id="loginStatus" style="margin-top: 20px;"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#jenkinsLoginForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                var username = $('#username').val();
+                var password = $('#password').val();
+
+                $.ajax({
+                    url: 'http://localhost:8080/login?from=%2Flogin%27',
+                    type: 'POST',
+                    data: {
+                        j_username: username,
+                        j_password: password,
+                        from: '/l'
+                    },
+                    success: function(data) {
+                        $('#loginStatus').html('Login successful!');
+                        // Optionally, redirect to Jenkins dashboard or do further processing
+                    },
+                    error: function(xhr) {
+                        $('#loginStatus').html('Login failed: ' + xhr.statusText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
